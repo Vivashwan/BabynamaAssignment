@@ -1,38 +1,49 @@
 # Babynama - Frontend Developer Intern Assignment
 
-Welcome to the Babynama internship assignment! This short project is designed to simulate a real-world task and help us understand your skills and thought process.
-
 **Objective:** Build a small, self-contained feature in Next.js.  
-**Time Allotment:** 2-4 hours.
+**Time Taken:** 2 hours.
 
 ---
 
-### **Part 1: Getting Started & The Task**
+### **Live URL**: (https://babynama-assignment-three.vercel.app/webinars)
 
-1.  **Repository Setup:** You have already created a repository from this template. Now, install the dependencies:
-    ```bash
-    npm install
-    ```
-2.  **The User Story:** Your goal is to implement the following feature:
-    > "As a busy parent exploring Babynama's resources, I want to see a simple, clear list of upcoming live webinars on a dedicated page so I can quickly see what's available."
+### **Choices Made**
+ - Added a countdown timer on each webinar card and hero carousel to show time remaining until the event starts (adds urgency).
+   
+   **Why this choice**: We added the countdown timer to create urgency and encourage user engagement. Timers are a proven UX strategy to increase conversions — in this case, motivating users to register before time runs out. It also keeps the content dynamic, making the UI feel more “alive” and real-time. Technically, it required managing setInterval and useEffect carefully to avoid memory leaks and to ensure accuracy without unnecessary rerenders. This feature improves both functionality and psychological appeal, making it one of the highest-impact additions to the page.
+   
+ **Other choices**
+ - Implemented a custom carousel to showcase the top 4 most registered webinars using transitions and timing logic.
+ - Created a separate grid layout for the Most Awaited Webinars section to improve scalability and responsiveness.
+ - Chose to use Tailwind CSS utility classes for fast styling and consistent design.
+ - Included category-based filtering and tag-based discovery, helping users find relevant webinars easily.
+ - Developed a newsletter subscription section, encouraging users to get updates on new webinars.
+ - Added speaker, title filters, enabling quick narrowing down of the webinar list.
+ - Created a basic testimonial section, displaying reviews to build trust and social proof.
+ - Added basic rating representation, allowing webinars to visually show appreciation for the speaker.
+ - Ensured accessibility improvements, such as aria-labels, keyboard navigation, and high-contrast text for readability.
+ - Optimized mobile experience, including a swipe-friendly carousel and responsive grid layout.
+ - Used blur effects on hero text areas for better readability without masking the image fully.
 
-3.  **Your Implementation Tasks:**
-    * **Create a Page:** Build a new page at the `/webinars` route.
-    * **Display Data:** You don't need an API. Create a mock data array directly in your page file. The array should contain at least three webinar objects, each with an `id`, `title`, `speaker` (e.g., "Dr. Sumitra Meena"), and `date`. Render this data as a list of styled cards on the `/webinars` page.
-    * **Add Interactivity:** Add a "View Details" button to each card. When clicked, it should log the `id` of that webinar to the browser's console (e.g., `console.log("Viewing details for webinar ID: 3")`).
+### **Roadblock & Learning**
+- Duplicate Carousel Rendering: Initially, the hero carousel was showing the same image twice in a stacked transition. This was due to accidentally duplicating the overlay content (<img> and content div) inside the .map() loop.
+      Learning: I debugged by removing one layer and restructuring the absolute elements properly so only one copy of the image and content gets rendered. This helped me better understand how nested absolute elements behave in React + Tailwind setups.
 
----
+- Text Visibility on Background Images: The overlaid text on images wasn't always readable, especially for light or detailed backgrounds.
+      Learning: I experimented with gradients and semi-transparent backgrounds but settled on using blur-effect and drop-shadow utilities.
 
-### **Part 2: Submission**
+- Countdown Timer Logic: While adding the countdown timer to each webinar, I initially placed the timer calculation directly in the render, which caused unnecessary rerenders and performance issues.
+      Learning: I moved the timer logic into useEffect with intervals, ensuring each timer updated only once per second. This improved efficiency. 
 
-After you've finished coding, please complete the following two steps.
+- Filtering by Date & Category: Implementing multi-filter logic was trickier than expected. Combining text search, category filters, and date comparison required restructuring the state logic and chaining multiple conditions.
+      Learning: I learned how to write clean and composable filter logic, and to debounce search input in real apps for performance.
 
-1.  **Deploy Your Work:** Deploy your project to Vercel (it's free).
-2.  **Complete this README:** **This is the most important step.** Edit this `README.md` file in your repository to include:
-    * **Live URL:** [Add your Vercel deployment link here]
-    * **Choices Made:** [Briefly explain one technical choice you made]
-    * **Roadblock & Learning:** [Describe one small thing you had to look up and how you solved it]
-    * **Screenshot:**
-        ![Your Screenshot Here](https://via.placeholder.com/600x400.png?text=Paste+Screenshot+of+Your+App+Here)
+### **Screenshots**
+![HeroCarosal](https://github.com/user-attachments/assets/7d72fb6b-679a-476c-b096-8e7e80264db3)
+(Hero Carosal)
 
-To submit, please share the link to your finished GitHub repository with us. Good luck!
+![MostAwaitedWebinars](https://github.com/user-attachments/assets/08d5070d-9cd8-482b-83e8-13efeacd345f)
+(Most awaited webinars)
+
+![Screenshot_Rating_Representation](https://github.com/user-attachments/assets/7832f3c1-7335-4e8b-9045-51b858c7d33b)
+(Basic rating representation)
